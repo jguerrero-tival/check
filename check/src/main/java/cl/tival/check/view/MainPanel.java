@@ -81,7 +81,7 @@ public class MainPanel extends JPanel {
 		this.facturaService = facturaService;
         initComponents();
         updateMainPanel();
-        this.imprimirFacturasButton.setEnabled(Boolean.FALSE);
+        //this.imprimirFacturasButton.setEnabled(Boolean.FALSE);
     }
 
     private void initComponents() {
