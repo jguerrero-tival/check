@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 8, 2012 10:12:53 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping schema="check">
+	<class name="cl.tival.check.model.Cheque" table="CHEQUE">
+		<id name="numero" type="java.lang.String">
+			<column name="NUMERO_CHEQUE" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="fecha" type="java.util.Date">
+			<column name="FECHA_CHEQUE" />
+		</property>
+		<property generated="never" lazy="false" name="estado" type="java.lang.String">
+			<column name="ESTADO_CHEQUE" />
+		</property>
+		<property generated="never" lazy="false" name="quienCobra" type="java.lang.String">
+			<column name="QUIENCOBRA_CHEQUE" />
+		</property>
+		<many-to-one class="cl.tival.check.model.Empresa" fetch="join" name="empresa">
+			<column name="RUT_EMPRESA" />
+		</many-to-one>
+		<!--
+		<list lazy="true" name="facturas" table="FACTURA">
+			<key>
+				<column name="SERIALVERSIONUID" />
+			</key>
+			<list-index base="0" />
+			<one-to-many class="cl.tival.check.model.Factura" />
+		</list>
+		-->
+		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
+			<column name="ACTIVO_CHEQUE" />
+		</property>
+	</class>
+</hibernate-mapping>

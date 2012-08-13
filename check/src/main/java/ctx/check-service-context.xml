@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="empresaService" class="cl.tival.check.service.impl.EmpresaServiceImpl">
+		<property name="empresaDao" ref="empresaDao" />
+	</bean>
+
+	<bean name="facturaService" class="cl.tival.check.service.impl.FacturaServiceImpl">
+		<property name="facturaDao" ref="facturaDao" />
+	</bean>
+	
+	<bean name="printerService" class="cl.tival.check.service.impl.PrinterServiceImpl">
+		<property name="printer" ref="printer" />
+		<property name="facturaDao" ref="facturaDao" />
+		<property name="numberToLetter" ref="numberToLetter" />
+		<property name="reportSourceName" value="CheckBancoChile.jrxml" />
+	</bean>
+	
+	<bean name="printer" class="cl.tival.check.printer.Printer">
+		<property name="printerName" value="Generic-CUPS-PDF-Printer" />
+	</bean>
+	
+	<bean name="numberToLetter" class="cl.tival.check.util.NumberToLetter" />
+
+</beans>

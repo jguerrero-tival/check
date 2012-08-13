@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="mainView" class="org.springframework.richclient.application.support.DefaultViewDescriptor">
+		<property name="viewClass" value="cl.tival.check.view.MainView" />
+		<property name="viewProperties">
+			<map>
+				<entry key="mainPanel" value-ref="mainPanel"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="mainPanel" class="cl.tival.check.view.MainPanel">
+		<constructor-arg index="0" ref="empresaService" />
+		<constructor-arg index="1" ref="facturaService" />
+		<property name="agregarEmpresaDialog" ref="agregarEmpresaDialog" />
+		<property name="eliminarEmpresaDialog" ref="eliminarEmpresaDialog" />
+		<property name="modificarEmpresaDialog" ref="modificarEmpresaDialog" />
+		<property name="agregarFacturaDialog" ref="agregarFacturaDialog" />
+		<property name="eliminarFacturaDialog" ref="eliminarFacturaDialog" />
+		<property name="modificarFacturaDialog" ref="modificarFacturaDialog" />
+		<property name="imprimirDialog" ref="imprimirDialog" />
+	</bean>
+	
+	<bean id="agregarEmpresaDialog" class="cl.tival.check.view.AgregarEmpresaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="empresaService" ref="empresaService" />
+	</bean>
+
+	<bean id="eliminarEmpresaDialog" class="cl.tival.check.view.EliminarEmpresaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="empresaService" ref="empresaService" />
+	</bean>
+
+	<bean id="modificarEmpresaDialog" class="cl.tival.check.view.ModificarEmpresaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="empresaService" ref="empresaService" />
+	</bean>
+	
+	<bean id="agregarFacturaDialog" class="cl.tival.check.view.AgregarFacturaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="facturaService" ref="facturaService" />
+	</bean>
+
+	<bean id="eliminarFacturaDialog" class="cl.tival.check.view.EliminarFacturaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="facturaService" ref="facturaService" />
+	</bean>
+
+	<bean id="modificarFacturaDialog" class="cl.tival.check.view.ModificarFacturaDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="facturaService" ref="facturaService" />
+	</bean>
+	
+	<bean id="imprimirDialog" class="cl.tival.check.view.ImprimirDialog">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1" value="true" />
+		<property name="printerService" ref="printerService" />
+		<property name="facturaService" ref="facturaService" />
+	</bean>
+
+</beans>

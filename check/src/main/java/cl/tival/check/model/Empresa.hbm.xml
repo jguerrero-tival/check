@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping schema="check">
+	<class name="cl.tival.check.model.Empresa" table="EMPRESA">
+		<id name="rut" type="java.lang.String">
+			<column name="RUT_EMPRESA" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="razonSocial" type="java.lang.String">
+			<column name="RAZON_SOCIAL_EMPRESA" />
+		</property>
+		<property generated="never" lazy="false" name="rutRepresentante" type="java.lang.String">
+			<column name="RUT_REPRESENTANTE" />
+		</property>
+		<property generated="never" lazy="false" name="razonSocialRepresentante" type="java.lang.String">
+			<column name="RAZON_SOCIAL_REPRESENTANTE" />
+		</property>
+		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
+			<column name="ACTIVO_EMPRESA" />
+		</property>
+		<!--
+		<one-to-one class="cl.tival.check.model.Representante" name="representante">
+		</one-to-one>
+		<property generated="never" lazy="false" name="descripcion" type="java.lang.String" not-null="false">
+			<column name="DESCRIPCION_EMPRESA" />
+		</property>
+		<property generated="never" lazy="false" name="quienCobra" type="java.lang.String" not-null="false">
+			<column name="QUIEN_COBRA_EMPRESA" />
+		</property>
+		<list lazy="true" name="facturas" table="FACTURA">
+			<key>
+				<column name="SERIALVERSIONUID" />
+			</key>
+			<list-index base="0" />
+			<one-to-many class="cl.tival.check.model.Factura" />
+		</list>
+		<list lazy="true" name="cheques" table="CHEQUE">
+			<key>
+				<column name="SERIALVERSIONUID" />
+			</key>
+			<list-index base="0" />
+			<one-to-many class="cl.tival.check.model.Cheque" />
+		</list>
+		-->
+	</class>
+</hibernate-mapping>

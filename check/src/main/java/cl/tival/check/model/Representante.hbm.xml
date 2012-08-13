@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 8, 2012 10:12:53 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping schema="check">
+	<class name="cl.tival.check.model.Representante" table="REPRESENTANTE">
+		<id name="rut" type="java.lang.String">
+			<column name="RUT_REPRESENTANTE" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="nombre" type="java.lang.String">
+			<column name="NOMBRE_REPRESENTANTE" />
+		</property>
+		<one-to-one class="cl.tival.check.model.Empresa" name="empresa" />
+		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
+			<column name="ACTIVO_REPRESENTANTE" />
+		</property>
+	</class>
+</hibernate-mapping>

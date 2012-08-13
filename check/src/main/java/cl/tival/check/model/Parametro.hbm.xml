@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 8, 2012 10:13:24 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping schema="check">
+	<class name="cl.tival.check.model.Parametro" table="PARAMETRO">
+		<id name="clave" type="java.lang.String">
+			<column name="CLAVE_PARAMETRO" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="valor" type="java.lang.String">
+			<column name="VALOR_PARAMETRO" />
+		</property>
+		<property generated="never" lazy="false" name="descripcion" type="java.lang.String">
+			<column name="DESCRIPCION_PARAMETRO" />
+		</property>
+		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
+			<column name="ACTIVO_PARAMETRO" />
+		</property>
+	</class>
+</hibernate-mapping>

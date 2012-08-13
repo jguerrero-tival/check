@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CheckBancoChile" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2dd7f2f9-0dce-4feb-8130-bab3c4fb8340">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="92"/>
+	<style name="ChechStyle" isDefault="true" fontSize="8"/>
+	<parameter name="NUMERO_DOCUMENTO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MONTO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MONTO_TOTAL" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PROVEEDOR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="RUT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="REF_INTERNA" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FECHA" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="DIA" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="MES" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ANNO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PAGUESE_A" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LA_SUMA_DE_NUMBER" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LA_SUMA_DE_STRING_L1" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LA_SUMA_DE_STRING_L2" class="java.lang.String" isForPrompting="false"/>
+	<title>
+		<band height="792" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="161" y="429" width="189" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_STRING_L2}]]></textFieldExpression>
+			</textField>
+			<!--
+			-->
+			<image>
+				<reportElement uuid="fb808d6e-570f-494e-8961-209363a4892f" x="0" y="0" width="612" height="514"/>
+				<imageExpression><![CDATA["/home/jguerrero/Tival/Check/code/trunk/check/CheckBancoChile.jpg"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="46" y="79" width="122" height="199"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<paragraph rightIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NUMERO_DOCUMENTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="168" y="79" width="160" height="199"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<paragraph rightIndent="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MONTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="168" y="278" width="159" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<paragraph rightIndent="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MONTO_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="328" y="79" width="241" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PROVEEDOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="329" y="126" width="102" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{RUT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="432" y="126" width="60" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{REF_INTERNA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="492" y="126" width="77" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="409" y="363" width="37" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DIA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="459" y="363" width="67" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{MES}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="539" y="363" width="37" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ANNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="161" y="387" width="415" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PAGUESE_A}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="461" y="324" width="115" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="161" y="415" width="415" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_STRING_L1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="161" y="429" width="189" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_STRING_L2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
