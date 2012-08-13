@@ -41,7 +41,7 @@ public class PrinterServiceImpl implements PrinterService {
 		data.put(Printer.NUMERO_DOCUMENTO, getNumeroDocumento(facturas, fraccion));
 		data.put(Printer.MONTO, getMonto(facturas));
 		Long montoTotal = getMontoTotal(facturas);
-		data.put(Printer.MONTO_TOTAL, montoTotal);
+		data.put(Printer.MONTO_TOTAL, Format.stringNumberToLong(montoTotal.toString()));
 		data.put(Printer.PROVEEDOR, empresa.getRazonSocial());
 		data.put(Printer.RUT, empresa.getRut());
 		data.put(Printer.REF_INTERNA, "");
@@ -50,7 +50,7 @@ public class PrinterServiceImpl implements PrinterService {
 		data.put(Printer.MES, Fecha.mesPalabra(Fecha.getMonth(fecha).intValue()));
 		data.put(Printer.ANNO, Fecha.getYear(fecha));
 		data.put(Printer.PAGUESE_A, empresa.getRazonSocialRepresentante());
-		data.put(Printer.LA_SUMA_DE_NUMBER, montoTotalFraccion.toString().concat("---------------------------------------------------------------------------------------------------"));
+		data.put(Printer.LA_SUMA_DE_NUMBER, Format.stringNumberToLong(montoTotalFraccion.toString()).concat("---------------------------------------------------------------------------------------------------"));
 		data.put(Printer.LA_SUMA_DE_STRING_L1, numberToLetter.Convertir(montoTotalFraccion.toString(), true).concat("----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- "));
 		data.put(Printer.LA_SUMA_DE_STRING_L2, "".concat("----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- "));
 		return data;
@@ -103,8 +103,8 @@ public class PrinterServiceImpl implements PrinterService {
 	private String getNumeroDocumento(List<Factura> facturas, String fraccion) {
 		String numeroDocumentos = "";
 		for(Factura factura : facturas) {
-			System.out.println(factura.getNumero() + "---" + factura.getNumero().toString());
-			numeroDocumentos = numeroDocumentos + factura.getNumero().toString() + "   " + fraccion + "\n";
+			System.out.println(Format.stringNumberToLong(factura.getNumero().toString()) + "---" + factura.getNumero().toString());
+			numeroDocumentos = numeroDocumentos + Format.stringNumberToLong(factura.getNumero().toString()) + "   " + fraccion + "\n";
 		}
 		System.out.println(numeroDocumentos);
 		return numeroDocumentos;
@@ -113,8 +113,8 @@ public class PrinterServiceImpl implements PrinterService {
 	private String getMonto(List<Factura> facturas) {
 		String monto = "";
 		for(Factura factura : facturas) {
-			System.out.println(factura.getMonto() + "---" + factura.getMonto().toString());
-			monto = monto + factura.getMonto().toString() + "\n";
+			System.out.println(Format.stringNumberToLong(factura.getMonto().toString()) + "---" + factura.getMonto().toString());
+			monto = monto + Format.stringNumberToLong(factura.getMonto().toString()) + "\n";
 			//monto.concat("\n").concat(factura.getMonto().toString());
 		}
 		System.out.println(monto);
