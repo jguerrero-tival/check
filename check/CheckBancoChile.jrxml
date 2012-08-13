@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CheckBancoChile" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2dd7f2f9-0dce-4feb-8130-bab3c4fb8340">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -20,17 +21,17 @@
 	<parameter name="LA_SUMA_DE_STRING_L2" class="java.lang.String" isForPrompting="false"/>
 	<title>
 		<band height="792" splitType="Stretch">
+			<!--
+			<image>
+				<reportElement uuid="fb808d6e-570f-494e-8961-209363a4892f" x="0" y="0" width="612" height="514"/>
+				<imageExpression><![CDATA["/home/jguerrero/Tival/Check/code/trunk/check/CheckBancoChile.jpg"]]></imageExpression>
+			</image>
+			-->
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="161" y="429" width="189" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_STRING_L2}]]></textFieldExpression>
 			</textField>
-			<!--
-			-->
-			<image>
-				<reportElement uuid="fb808d6e-570f-494e-8961-209363a4892f" x="0" y="0" width="612" height="514"/>
-				<imageExpression><![CDATA["/home/jguerrero/Tival/Check/code/trunk/check/CheckBancoChile.jpg"]]></imageExpression>
-			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="2bcf05ad-1793-4db9-94a3-74254b935c0d" x="46" y="79" width="122" height="199"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
@@ -107,6 +108,26 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{LA_SUMA_DE_STRING_L2}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="bdc2da19-5b4f-4ceb-9dbf-5bf28a393c82" x="121" y="384" width="30" height="13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4c97fa5-414f-4c2b-88d9-035cd450729f" x="531" y="397" width="45" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement uuid="121daab4-6364-4e5b-8aa1-0387b2ed8199" x="303" y="311" width="8" height="203"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement uuid="121daab4-6364-4e5b-8aa1-0387b2ed8199" x="312" y="311" width="8" height="203"/>
+			</line>
 		</band>
 	</title>
 </jasperReport>
