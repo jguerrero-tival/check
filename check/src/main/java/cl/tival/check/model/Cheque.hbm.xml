@@ -11,26 +11,12 @@
 		<property generated="never" lazy="false" name="fecha" type="java.util.Date">
 			<column name="FECHA_CHEQUE" />
 		</property>
-		<property generated="never" lazy="false" name="estado" type="java.lang.String">
-			<column name="ESTADO_CHEQUE" />
+		<property generated="never" lazy="false" name="fraccion" type="java.lang.String">
+			<column name="FRACCION_CHEQUE" />
 		</property>
-		<property generated="never" lazy="false" name="quienCobra" type="java.lang.String">
-			<column name="QUIENCOBRA_CHEQUE" />
-		</property>
-		<many-to-one class="cl.tival.check.model.Empresa" fetch="join" name="empresa">
-			<column name="RUT_EMPRESA" />
-		</many-to-one>
-		<!--
-		<list lazy="true" name="facturas" table="FACTURA">
-			<key>
-				<column name="SERIALVERSIONUID" />
-			</key>
-			<list-index base="0" />
-			<one-to-many class="cl.tival.check.model.Factura" />
-		</list>
-		-->
-		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
-			<column name="ACTIVO_CHEQUE" />
-		</property>
+	    <set name="facturas" inverse="true" table="FACTURA_CHEQUE">
+	        <key column="NUMERO_CHEQUE"/>
+	        <many-to-many column="NUMERO_FACTURA" class="cl.tival.check.model.Factura"/>
+	    </set>
 	</class>
 </hibernate-mapping>

@@ -2,18 +2,16 @@ package cl.tival.check.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Cheque implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String numero;
 	private Date fecha;
-	private String estado;
-	private String quienCobra;
-	private Empresa empresa;
-	private List<Factura> facturas;
-	private Boolean activo;
+	private String fraccion;
+	private Set<Factura> facturas;
 
 	public String getNumero() {
 		return numero;
@@ -31,43 +29,30 @@ public class Cheque implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getFraccion() {
+		return fraccion;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setFraccion(String fraccion) {
+		this.fraccion = fraccion;
 	}
 
-	public String getQuienCobra() {
-		return quienCobra;
-	}
-
-	public void setQuienCobra(String quienCobra) {
-		this.quienCobra = quienCobra;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public List<Factura> getFacturas() {
+	public Set<Factura> getFacturas() {
+		if (facturas == null) {
+			facturas = new HashSet<Factura>();
+		}
 		return facturas;
 	}
 
-	public void setFacturas(List<Factura> facturas) {
+	public void setFacturas(Set<Factura> facturas) {
 		this.facturas = facturas;
 	}
 
-	public Boolean getActivo() {
-		return activo;
+	public void addFactura(Factura factura) {
+		if(factura!=null) {
+			factura.getCheques().add(this);
+			getFacturas().add(factura);
+		}
 	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
 }

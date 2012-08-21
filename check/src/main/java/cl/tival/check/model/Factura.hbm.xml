@@ -20,10 +20,16 @@
 		<many-to-one class="cl.tival.check.model.Empresa" name="empresa" not-null="false" lazy="false"><!-- fetch="join" -->
 			<column name="RUT_EMPRESA" />
 		</many-to-one>
-		<many-to-one class="cl.tival.check.model.Cheque" name="cheque" not-null="false"><!-- fetch="join" -->
+		<!--
+		<many-to-one class="cl.tival.check.model.Cheque" name="cheque" not-null="false">
 			<column name="NUMERO_CHEQUE" />
 		</many-to-one>
-		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
+		-->
+	    <set name="cheques" inverse="false" table="FACTURA_CHEQUE" lazy="false" cascade="all">
+	        <key column="NUMERO_FACTURA"/>
+	        <many-to-many column="NUMERO_CHEQUE" class="cl.tival.check.model.Cheque"/>
+	    </set>
+   		<property generated="never" lazy="false" name="activo" type="java.lang.Boolean">
 			<column name="ACTIVO_FACTURA" />
 		</property>
 	</class>

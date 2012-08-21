@@ -2,6 +2,8 @@ package cl.tival.check.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Factura implements Serializable, Comparable<Factura> {
 
@@ -11,7 +13,7 @@ public class Factura implements Serializable, Comparable<Factura> {
 	private Date fecha;
 	private Long monto;
 	private String estado;
-	private Cheque cheque;
+	private Set<Cheque> cheques;
 	private Boolean activo;
 	private Boolean seleccion;
 
@@ -55,20 +57,37 @@ public class Factura implements Serializable, Comparable<Factura> {
 		this.estado = estado;
 	}
 
-	public Cheque getCheque() {
-		return cheque;
+	public Set<Cheque> getCheques() {
+		if(cheques==null) {
+			cheques = new HashSet<Cheque>();
+		}
+		return cheques;
 	}
 
 	@Override
 	public String toString() {
 		return "Factura [empresa=" + empresa + ", numero="
 				+ numero + ", fecha=" + fecha + ", monto=" + monto
-				+ ", estado=" + estado + ", cheque=" + cheque + ", activo="
+				+ ", estado=" + estado + ", cheque=" + cheques + ", activo="
 				+ activo + "]";
 	}
 
-	public void setCheque(Cheque cheque) {
-		this.cheque = cheque;
+	public void setCheques(Set<Cheque> cheques) {
+		this.cheques = cheques;
+	}
+
+	public void addCheque(Cheque cheque) {
+		if(cheque!=null) {
+			cheque.getFacturas().add(this);
+			getCheques().add(cheque);
+		}
+	}
+	
+	public void removeCheque(Cheque cheque) {
+		if(cheque!=null) {
+			//cheque.getFacturas().remove(this);
+			getCheques().remove(cheque);
+		}
 	}
 
 	public Boolean getActivo() {
@@ -123,7 +142,7 @@ public class Factura implements Serializable, Comparable<Factura> {
 	protected Object clone() throws CloneNotSupportedException {
 		Factura factura = new Factura();
 		factura.setActivo(activo);
-		factura.setCheque(cheque);
+		factura.setCheques(cheques);
 		factura.setEmpresa(empresa);
 		factura.setEstado(estado);
 		factura.setFecha(fecha);

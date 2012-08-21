@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cl.tival.check.model.Cheque;
 import cl.tival.check.model.Empresa;
 import cl.tival.check.model.Factura;
 import cl.tival.check.service.FacturaService;
 import cl.tival.check.service.PrinterService;
-import cl.tival.check.util.Fecha;
 import cl.tival.check.util.Format;
 import cl.tival.check.util.Pantalla;
 
@@ -69,6 +69,12 @@ public class ImprimirDialog extends javax.swing.JDialog {
     private javax.swing.JTextField montoTextField4;
     private javax.swing.JTextField montoTextField5;
     private javax.swing.JTextField montoTextField6;
+    private javax.swing.JTextField numeroChequeTextField1;
+    private javax.swing.JTextField numeroChequeTextField2;
+    private javax.swing.JTextField numeroChequeTextField3;
+    private javax.swing.JTextField numeroChequeTextField4;
+    private javax.swing.JTextField numeroChequeTextField5;
+    private javax.swing.JTextField numeroChequeTextField6;
     private javax.swing.JLabel totalComprobacionLabel;
     private javax.swing.JTextField totalComprobacionTextField;
     private javax.swing.JLabel totalPagarLabel;
@@ -121,72 +127,181 @@ public class ImprimirDialog extends javax.swing.JDialog {
 		Format.formatLong(evt);
 		actualizarTotalComprobacion((Integer)cantidadChequesComboBox.getSelectedItem());
     }
+    
+    private void numeroChequeTextField1KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
 
+    private void numeroChequeTextField2KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
+
+    private void numeroChequeTextField3KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
+
+    private void numeroChequeTextField4KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
+
+    private void numeroChequeTextField5KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
+
+    private void numeroChequeTextField6KeyTyped(KeyEvent evt) {
+		Format.formatLong(evt);
+    }
+
+    private Cheque createCheque(String numeroCheque, Date fecha, String fraccion) {
+    	Cheque cheque = new Cheque();
+    	cheque.setNumero(numeroCheque);
+    	cheque.setFecha(fecha);
+    	cheque.setFraccion(fraccion);
+    	return cheque;
+    }
+    
     private void imprimirButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField1.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField1.getText());
-	    	String fraccion = "(1/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
-    	
+    	String numeroCheque = numeroChequeTextField1.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+    		if(validateMontoComprobacion()) {
+    	    	Date fecha = Format.stringToDate(this.fechaTextField1.getText());
+    	    	Long montoTotalFraccion = Long.valueOf(montoTextField1.getText());
+    	    	String fraccion = "(1/"+cantidadChequesComboBox.getSelectedItem()+")";
+    	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+    	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+            } else {
+            	alertaImpresion();
+            }
+    	} else {
+    		alertaNumeroCheque();
+    	}
     }
 
     private void imprimirButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField2.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField2.getText());
-	    	String fraccion = "(2/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
+    	String numeroCheque = numeroChequeTextField2.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+	    	if(validateMontoComprobacion()) {
+		    	Date fecha = Format.stringToDate(this.fechaTextField2.getText());
+		    	Long montoTotalFraccion = Long.valueOf(montoTextField2.getText());
+		    	String fraccion = "(2/"+cantidadChequesComboBox.getSelectedItem()+")";
+		    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+	        } else {
+	        	alertaImpresion();
+	        }
+    	} else {
+    		alertaNumeroCheque();
+    	}
     }
 
     private void imprimirButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField3.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField3.getText());
-	    	String fraccion = "(3/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
+    	String numeroCheque = numeroChequeTextField3.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+	    	if(validateMontoComprobacion()) {
+		    	Date fecha = Format.stringToDate(this.fechaTextField3.getText());
+		    	Long montoTotalFraccion = Long.valueOf(montoTextField3.getText());
+		    	String fraccion = "(3/"+cantidadChequesComboBox.getSelectedItem()+")";
+		    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+	        } else {
+	        	alertaImpresion();
+	        }
+    	} else {
+    		alertaNumeroCheque();
+    	}
     }
 
     private void imprimirButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField4.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField4.getText());
-	    	String fraccion = "(4/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
+    	String numeroCheque = numeroChequeTextField4.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+	    	if(validateMontoComprobacion()) {
+		    	Date fecha = Format.stringToDate(this.fechaTextField4.getText());
+		    	Long montoTotalFraccion = Long.valueOf(montoTextField4.getText());
+		    	String fraccion = "(4/"+cantidadChequesComboBox.getSelectedItem()+")";
+		    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+	        } else {
+	        	alertaImpresion();
+	        }
+	    } else {
+    		alertaNumeroCheque();
+    	}
     }
 
     private void imprimirButton5ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField5.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField5.getText());
-	    	String fraccion = "(5/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
+    	String numeroCheque = numeroChequeTextField5.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+	    	if(validateMontoComprobacion()) {
+		    	Date fecha = Format.stringToDate(this.fechaTextField5.getText());
+		    	Long montoTotalFraccion = Long.valueOf(montoTextField5.getText());
+		    	String fraccion = "(5/"+cantidadChequesComboBox.getSelectedItem()+")";
+		    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+	        } else {
+	        	alertaImpresion();
+	        }
+    	} else {
+    		alertaNumeroCheque();
+    	}
     }
 
     private void imprimirButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(validateMontoComprobacion()) {
-	    	Date fecha = Format.stringToDate(this.fechaTextField6.getText());
-	    	Long montoTotalFraccion = Long.valueOf(montoTextField6.getText());
-	    	String fraccion = "(6/"+cantidadChequesComboBox.getSelectedItem()+")";
-	    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
-        } else {
-        	alertaImpresion();
-        }
+    	String numeroCheque = numeroChequeTextField6.getText();
+    	if(!"".equals(numeroCheque.trim())) {
+
+	    	if(validateMontoComprobacion()) {
+		    	Date fecha = Format.stringToDate(this.fechaTextField6.getText());
+		    	Long montoTotalFraccion = Long.valueOf(montoTextField6.getText());
+		    	String fraccion = "(6/"+cantidadChequesComboBox.getSelectedItem()+")";
+		    	printerService.printFactura(numerosFactura, fecha, montoTotalFraccion, fraccion);
+	    		
+                int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nAl selecciona \"Si\" será almacenado el número de cheque.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION ) {
+                	Cheque cheque = createCheque(numeroCheque, fecha, fraccion);
+            	    facturaService.guardarCheque(numerosFactura, cheque);
+                }
+
+	        } else {
+	        	alertaImpresion();
+	        }
+    	} else {
+    		alertaNumeroCheque();
+    	}
     }
     
     private boolean validateMontoComprobacion() {
@@ -200,6 +315,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
     
     private void alertaImpresion() {
     	JOptionPane.showMessageDialog(this, "Para imprimir el Total a Pagar debe ser igual al Total de Comprobación.", "Aviso", JOptionPane.WARNING_MESSAGE);
+    }
+    
+    private void alertaNumeroCheque() {
+    	JOptionPane.showMessageDialog(this, "Para imprimir debe ingresar el número de cheque correspondiente.", "Aviso", JOptionPane.WARNING_MESSAGE);
     }
 
     private void initComponents() {
@@ -216,24 +335,30 @@ public class ImprimirDialog extends javax.swing.JDialog {
         montoLabel = new javax.swing.JLabel();
         fechaLabel = new javax.swing.JLabel();
         numeroChequeLabel1 = new javax.swing.JLabel();
-        montoTextField1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         fechaTextField1 = new JFormattedTextField(Format.getMaskDate());
         numeroChequeLabel2 = new javax.swing.JLabel();
-        montoTextField2 = new javax.swing.JTextField();
         fechaTextField2 = new JFormattedTextField(Format.getMaskDate());
         fechaTextField3 = new JFormattedTextField(Format.getMaskDate());
         numeroChequeLabel3 = new javax.swing.JLabel();
-        montoTextField3 = new javax.swing.JTextField();
         numeroChequeLabel4 = new javax.swing.JLabel();
         fechaTextField4 = new JFormattedTextField(Format.getMaskDate());
-        montoTextField4 = new javax.swing.JTextField();
         numeroChequeLabel5 = new javax.swing.JLabel();
         fechaTextField5 = new JFormattedTextField(Format.getMaskDate());
-        montoTextField5 = new javax.swing.JTextField();
         numeroChequeLabel6 = new javax.swing.JLabel();
         fechaTextField6 = new JFormattedTextField(Format.getMaskDate());
+        montoTextField1 = new javax.swing.JTextField();
+        montoTextField2 = new javax.swing.JTextField();
+        montoTextField3 = new javax.swing.JTextField();
+        montoTextField4 = new javax.swing.JTextField();
+        montoTextField5 = new javax.swing.JTextField();
         montoTextField6 = new javax.swing.JTextField();
+        numeroChequeTextField1 = new javax.swing.JTextField();
+        numeroChequeTextField2 = new javax.swing.JTextField();
+        numeroChequeTextField3 = new javax.swing.JTextField();
+        numeroChequeTextField4 = new javax.swing.JTextField();
+        numeroChequeTextField5 = new javax.swing.JTextField();
+        numeroChequeTextField6 = new javax.swing.JTextField();
         imprimirButton1 = new javax.swing.JButton();
         imprimirButton2 = new javax.swing.JButton();
         imprimirButton3 = new javax.swing.JButton();
@@ -382,6 +507,41 @@ public class ImprimirDialog extends javax.swing.JDialog {
             }
         });
 
+        numeroChequeTextField1.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField1KeyTyped(evt);
+            }
+        });
+
+        numeroChequeTextField2.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField2KeyTyped(evt);
+            }
+        });
+
+        numeroChequeTextField3.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField3KeyTyped(evt);
+            }
+        });
+
+        numeroChequeTextField4.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField4KeyTyped(evt);
+            }
+        });
+
+        numeroChequeTextField5.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField5KeyTyped(evt);
+            }
+        });
+
+        numeroChequeTextField6.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+            	numeroChequeTextField6KeyTyped(evt);
+            }
+        });
         
         
         imprimirButton1.setText("Imprimir 1");
@@ -449,6 +609,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton2))
                             .addGroup(chequesPanelLayout.createSequentialGroup()
                                 .addComponent(numeroChequeLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,6 +618,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addComponent(montoTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton3))
                             .addGroup(chequesPanelLayout.createSequentialGroup()
@@ -465,6 +629,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton4))
                             .addGroup(chequesPanelLayout.createSequentialGroup()
                                 .addComponent(numeroChequeLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -472,6 +638,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addComponent(montoTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton5))
                             .addGroup(chequesPanelLayout.createSequentialGroup()
@@ -481,6 +649,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton6))
                             .addGroup(chequesPanelLayout.createSequentialGroup()
                                 .addComponent(numeroChequeLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -488,6 +658,8 @@ public class ImprimirDialog extends javax.swing.JDialog {
                                 .addComponent(montoTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroChequeTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imprimirButton1)))
                         .addGap(0, 69, Short.MAX_VALUE)))
@@ -509,7 +681,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton1))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel1)
+                        .addComponent(numeroChequeTextField1)
                         .addComponent(montoTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numeroChequeTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -517,7 +692,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton2))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel2)
+                        .addComponent(numeroChequeTextField2)
                         .addComponent(montoTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numeroChequeTextField2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -525,7 +703,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton3))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel3)
+                        .addComponent(numeroChequeTextField3)
                         .addComponent(montoTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numeroChequeTextField3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -533,7 +714,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton4))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel4)
+                        .addComponent(numeroChequeTextField4)
                         .addComponent(montoTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numeroChequeTextField4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -541,7 +725,10 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton5))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel5)
+                        .addComponent(numeroChequeTextField5)
                         .addComponent(montoTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numeroChequeTextField5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -549,6 +736,7 @@ public class ImprimirDialog extends javax.swing.JDialog {
                         .addComponent(imprimirButton6))
                     .addGroup(chequesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numeroChequeLabel6)
+                        .addComponent(numeroChequeTextField6)
                         .addComponent(montoTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -670,6 +858,20 @@ public class ImprimirDialog extends javax.swing.JDialog {
     	montoTextField5.setEditable(false);
     	montoTextField6.setEditable(false);
 
+    	numeroChequeTextField1.setText("");
+    	numeroChequeTextField2.setText("");
+    	numeroChequeTextField3.setText("");
+    	numeroChequeTextField4.setText("");
+    	numeroChequeTextField5.setText("");
+    	numeroChequeTextField6.setText("");
+
+    	numeroChequeTextField1.setEditable(false);
+    	numeroChequeTextField2.setEditable(false);
+    	numeroChequeTextField3.setEditable(false);
+    	numeroChequeTextField4.setEditable(false);
+    	numeroChequeTextField5.setEditable(false);
+    	numeroChequeTextField6.setEditable(false);
+
     	fechaTextField1.setText("");
     	fechaTextField2.setText("");
     	fechaTextField3.setText("");
@@ -734,36 +936,42 @@ public class ImprimirDialog extends javax.swing.JDialog {
     	switch (cantidadCheques) {
 		case 6:
 			montoTextField6.setEditable(true);
+			numeroChequeTextField6.setEditable(true);
 	    	fechaTextField6.setEditable(true);
 	    	imprimirButton6.setEnabled(true);
 	    	montoTextField6.setText(Long.toString(montos[5]));
 			fechaTextField6.setText(Format.dateToString(fechas[5]));
 		case 5:
 			montoTextField5.setEditable(true);
+			numeroChequeTextField5.setEditable(true);
 	    	fechaTextField5.setEditable(true);
 	    	imprimirButton5.setEnabled(true);
 	    	montoTextField5.setText(Long.toString(montos[4]));
 			fechaTextField5.setText(Format.dateToString(fechas[4]));
 		case 4:
 			montoTextField4.setEditable(true);
+			numeroChequeTextField4.setEditable(true);
 	    	fechaTextField4.setEditable(true);
 	    	imprimirButton4.setEnabled(true);
 	    	montoTextField4.setText(Long.toString(montos[3]));
 			fechaTextField4.setText(Format.dateToString(fechas[3]));
 		case 3:
 			montoTextField3.setEditable(true);
+			numeroChequeTextField3.setEditable(true);
 	    	fechaTextField3.setEditable(true);
 	    	imprimirButton3.setEnabled(true);
 	    	montoTextField3.setText(Long.toString(montos[2]));
 			fechaTextField3.setText(Format.dateToString(fechas[2]));
 		case 2:
 			montoTextField2.setEditable(true);
+			numeroChequeTextField2.setEditable(true);
 	    	fechaTextField2.setEditable(true);
 	    	imprimirButton2.setEnabled(true);
 	    	montoTextField2.setText(Long.toString(montos[1]));
 			fechaTextField2.setText(Format.dateToString(fechas[1]));
 		case 1:
 			montoTextField1.setEditable(true);
+			numeroChequeTextField1.setEditable(true);
 	    	fechaTextField1.setEditable(true);
 	    	imprimirButton1.setEnabled(true);
 	    	montoTextField1.setText(Long.toString(montos[0]));

@@ -2,6 +2,7 @@ package cl.tival.check.service;
 
 import java.util.List;
 
+import cl.tival.check.model.Cheque;
 import cl.tival.check.model.Factura;
 import cl.tival.check.table.FacturaTableModel;
 import cl.tival.check.ui.FacturaFilter;
@@ -21,6 +22,8 @@ public interface FacturaService {
 	public int updateFactura(Long numeroFacturaActual, Factura factura);
 	
 	public Factura getFactura(Long numeroFactura);
+	
+	public void guardarCheque(List<Long> numerosFactura, Cheque cheque);
 	
 	
 	

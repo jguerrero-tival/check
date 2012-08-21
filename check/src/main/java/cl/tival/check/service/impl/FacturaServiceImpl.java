@@ -2,12 +2,14 @@ package cl.tival.check.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cl.tival.check.app.CheckConstants;
 import cl.tival.check.dao.FacturaDao;
+import cl.tival.check.model.Cheque;
 import cl.tival.check.model.Factura;
 import cl.tival.check.service.FacturaService;
 import cl.tival.check.table.FacturaTableModel;
@@ -185,5 +187,19 @@ public class FacturaServiceImpl implements FacturaService {
 		facturaDao.deactivateFactura(factura.getNumero());
 	}
 
+	public void guardarCheque(List<Long> numerosFactura, Cheque cheque) {
+		List<Factura> facturas = getFacturasByNumeros(numerosFactura);
+		String fraccion = cheque.getFraccion();
+		for (Factura factura : facturas) {
+			Set<Cheque> cheques = factura.getCheques();
+			for (Cheque chequeFactura : cheques) {
+				if(fraccion.equals(chequeFactura.getFraccion())) {
+					factura.removeCheque(chequeFactura);
+				}
+			}
+			factura.addCheque(cheque);
+			facturaDao.saveFactura(factura);
+		}
+	}
 }
 

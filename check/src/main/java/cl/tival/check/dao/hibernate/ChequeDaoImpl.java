@@ -43,20 +43,20 @@ public class ChequeDaoImpl extends HibernateDaoSupport implements ChequeDao {
 
 	@Override
 	public void activateCheque(String numeroCheque) {
-		Cheque cheque = getCheque(numeroCheque);
-		if(cheque!=null) {
-			cheque.setActivo(Boolean.TRUE);
-			saveCheque(cheque);
-		}
+//		Cheque cheque = getCheque(numeroCheque);
+//		if(cheque!=null) {
+//			cheque.setActivo(Boolean.TRUE);
+//			saveCheque(cheque);
+//		}
 	}
 
 	@Override
 	public void deactivateCheque(String numeroCheque) {
-		Cheque cheque = getCheque(numeroCheque);
-		if(cheque!=null) {
-			cheque.setActivo(Boolean.FALSE);
-			saveCheque(cheque);
-		}
+//		Cheque cheque = getCheque(numeroCheque);
+//		if(cheque!=null) {
+//			cheque.setActivo(Boolean.FALSE);
+//			saveCheque(cheque);
+//		}
 	}
 	
 }
