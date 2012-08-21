@@ -31,7 +31,12 @@ public class MainPanel extends JPanel {
 	private EliminarFacturaDialog eliminarFacturaDialog;
 	private ModificarFacturaDialog modificarFacturaDialog;
 	private ImprimirDialog imprimirDialog;
-	
+	private PrinterService printerService;
+
+    public void setPrinterService(PrinterService printerService) {
+		this.printerService= printerService;
+	}
+
     public void setImprimirDialog(ImprimirDialog imprimirDialog) {
 		this.imprimirDialog = imprimirDialog;
 	}
@@ -346,11 +351,10 @@ public class MainPanel extends JPanel {
         	imprimirDialog.setNumerosFactura(numerosFactura);
         	imprimirDialog.cleanScreen();
         	imprimirDialog.setVisible(true);
-        	//printerService.printFactura(numerosFactura);
-
+        	
     		int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nSi selecciona \"No\" las facturas no serán eliminadas de la tabla.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (response == JOptionPane.YES_OPTION ) {
-            	//printerService.marcarFacturaimpresa(numerosFactura);
+            	printerService.marcarFacturaimpresa(numerosFactura);
             	updateFacturas();
             }
         } else {

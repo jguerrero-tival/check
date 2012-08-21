@@ -22,6 +22,7 @@
 		<property name="eliminarFacturaDialog" ref="eliminarFacturaDialog" />
 		<property name="modificarFacturaDialog" ref="modificarFacturaDialog" />
 		<property name="imprimirDialog" ref="imprimirDialog" />
+		<property name="printerService" ref="printerService" />
 	</bean>
 	
 	<bean id="agregarEmpresaDialog" class="cl.tival.check.view.AgregarEmpresaDialog">
