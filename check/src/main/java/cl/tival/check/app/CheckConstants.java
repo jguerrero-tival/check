@@ -33,7 +33,11 @@ public class CheckConstants {
 	public static final int MODIFICAR_FACTURA_OK = 0;
 	public static final int MODIFICAR_FACTURA_DESACTIVADO = 1;
 	public static final int MODIFICAR_FACTURA_NO_EXISTE = 2;
-	
+
+	public static final int BUSCAR_CHEQUES_FAIL = -1;
+	public static final int BUSCAR_CHEQUES_OK = 0;
+	public static final int BUSCAR_CHEQUES_NO_EXISTE = 1;
+
 	/* Estados Factura */
 	public static final String ESTADO_FACTURA_INGRESADA = "INGRESADA";
 	public static final String ESTADO_FACTURA_IMPRESA = "IMPRESA";

@@ -1,6 +1,7 @@
 package cl.tival.check.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -201,5 +202,12 @@ public class FacturaServiceImpl implements FacturaService {
 			facturaDao.saveFactura(factura);
 		}
 	}
+
+	public Set<Cheque> getCheques(Long numeroFactura) {
+		Factura factura = getFactura(numeroFactura);
+		if(factura==null) return new HashSet<Cheque>();
+		return factura.getCheques();
+	}
+	
 }
 

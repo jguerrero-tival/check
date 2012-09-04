@@ -8,6 +8,7 @@ drop table CHEQUE;
 drop table EMPRESA;
 drop table FACTURA;
 drop table PARAMETRO;
+drop table FACTURA_CHEQUE;
 
 create table CHEQUE
 (
@@ -46,17 +47,6 @@ create table FACTURA_CHEQUE
   primary key (NUMERO_FACTURA, NUMERO_CHEQUE)
 );
 
-create table PARAMETRO
-(
-   CLAVE_PARAMETRO      varchar(32) not null,
-   VALOR_PARAMETRO      varchar(128) not null,
-   DESCRIPCION_PARAMETRO bigint not null,
-   ACTIVO_PARAMETRO     boolean not null,
-   primary key (CLAVE_PARAMETRO)
-);
-
-alter table CHEQUE add constraint FK_EMPRESA_CHEQUE foreign key (RUT_EMPRESA)
-      references EMPRESA (RUT_EMPRESA) on delete restrict on update restrict;
 alter table FACTURA add constraint FK_CHEQUE_FACTURA foreign key (NUMERO_CHEQUE)
       references CHEQUE (NUMERO_CHEQUE) on delete restrict on update restrict;
 alter table FACTURA add constraint FK_EMPRESA_FACTURA foreign key (RUT_EMPRESA)

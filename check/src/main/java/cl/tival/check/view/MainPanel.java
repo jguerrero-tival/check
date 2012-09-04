@@ -30,6 +30,7 @@ public class MainPanel extends JPanel {
 	private AgregarFacturaDialog agregarFacturaDialog;
 	private EliminarFacturaDialog eliminarFacturaDialog;
 	private ModificarFacturaDialog modificarFacturaDialog;
+	private BuscarChequesDialog buscarChequesDialog;
 	private ImprimirDialog imprimirDialog;
 	private PrinterService printerService;
 
@@ -64,7 +65,11 @@ public class MainPanel extends JPanel {
     public void setModificarFacturaDialog(ModificarFacturaDialog modificarFacturaDialog) {
 		this.modificarFacturaDialog = modificarFacturaDialog;
 	}
-    
+
+	public void setBuscarChequesDialog(BuscarChequesDialog buscarChequesDialog) {
+		this.buscarChequesDialog = buscarChequesDialog;
+	}
+
 	// Variables declaration - do not modify
     private javax.swing.JButton agregarEmpresaButton;
     private javax.swing.JButton agregarFacturaButton;
@@ -78,6 +83,7 @@ public class MainPanel extends JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton modificarEmpresaButton;
     private javax.swing.JButton modificarFacturaButton;
+    private javax.swing.JButton buscarChequesButton;
     
     // End of variables declaration
 
@@ -103,6 +109,7 @@ public class MainPanel extends JPanel {
         modificarFacturaButton = new javax.swing.JButton();
         agregarFacturaButton = new javax.swing.JButton();
         eliminarFacturaButton = new javax.swing.JButton();
+        buscarChequesButton = new javax.swing.JButton();
 
         
 //        modificarEmpresaButton.setEnabled(false);
@@ -175,6 +182,13 @@ public class MainPanel extends JPanel {
                 imprimirFacturasButtonActionPerformed(evt);
             }
         });
+        
+        buscarChequesButton.setText("Buscar Cheques");
+        buscarChequesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarChequesButtonActionPerformed(evt);
+            }
+        });
 
         facturasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,6 +240,8 @@ public class MainPanel extends JPanel {
                         .addComponent(eliminarFacturaButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(imprimirFacturasButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarChequesButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -233,6 +249,7 @@ public class MainPanel extends JPanel {
             facturasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(facturasPanelLayout.createSequentialGroup()
                 .addGroup(facturasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarChequesButton)
                     .addComponent(imprimirFacturasButton)
                     .addComponent(modificarFacturaButton)
                     .addComponent(agregarFacturaButton)
@@ -360,6 +377,35 @@ public class MainPanel extends JPanel {
         } else {
         	JOptionPane.showMessageDialog(this, "Para imprimir debe seleccionar al menos una factura", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
+    }
+    
+    private void buscarChequesButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	System.out.println("ANTES de Buscar Cheque");
+    	Empresa empresa = (Empresa) empresaComboBox.getSelectedItem();
+    	buscarChequesDialog.setEmpresa(empresa);
+    	buscarChequesDialog.setVisible(true);
+        //this.updateFacturas();
+    	System.out.println("DESPUES de Buscar Cheque");
+
+    	//    	Object[] selectedRows = ((FacturaTableModel)facturasTable.getModel()).getSelectedIndexRow();
+//    	if(selectedRows.length>0) {
+//        	List<Long> numerosFactura = new ArrayList<Long>();
+//        	for(int i=0; i<selectedRows.length; i++) {
+//        		Long numeroFactura = (Long)facturasTable.getValueAt((Integer)selectedRows[i], 0);
+//        		numerosFactura.add(numeroFactura);
+//        	}
+//        	imprimirDialog.setNumerosFactura(numerosFactura);
+//        	imprimirDialog.cleanScreen();
+//        	imprimirDialog.setVisible(true);
+//        	
+//    		int response = JOptionPane.showConfirmDialog(this, "¿La impresión fue exitosa?\nSi selecciona \"No\" las facturas no serán eliminadas de la tabla.", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+//            if (response == JOptionPane.YES_OPTION ) {
+//            	printerService.marcarFacturaimpresa(numerosFactura);
+//            	updateFacturas();
+//            }
+//        } else {
+//        	JOptionPane.showMessageDialog(this, "Para imprimir debe seleccionar al menos una factura", "Aviso", JOptionPane.WARNING_MESSAGE);
+//        }
     }
 
     private void empresaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
